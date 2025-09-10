@@ -5,7 +5,7 @@ import DashboardMetrics from "@/components/organisms/DashboardMetrics";
 import RecentActivity from "@/components/organisms/RecentActivity";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ui/ApperIcon";
+import ApperIcon from "@/components/ApperIcon";
 import { dashboardService } from "@/services/api/dashboardService";
 
 const Dashboard = () => {
