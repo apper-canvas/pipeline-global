@@ -54,7 +54,7 @@ const Header = ({ title, onMenuToggle, actions = [] }) => {
             Logout
           </Button>
           </div>
-        )}
+)
       </div>
     </header>
   );
