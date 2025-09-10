@@ -34,3 +34,11 @@ export const formatCurrency = (amount) => {
 export const formatNumber = (number) => {
   return new Intl.NumberFormat("en-US").format(number);
 };
+
+// Export formatters object for destructured imports
+export const formatters = {
+  date: formatDate,
+  relativeTime: formatRelativeTime,
+  currency: formatCurrency,
+  number: formatNumber,
+};
