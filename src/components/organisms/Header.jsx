@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useSelector } from "react-redux";
-import { AuthContext } from "@/contexts/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 const Header = ({ title, onMenuToggle, actions = [] }) => {
