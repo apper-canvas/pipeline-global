@@ -6,29 +6,29 @@ import FormField from "@/components/molecules/FormField";
 
 const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    position: "",
-    status: "Lead",
-    notes: "",
+first_name_c: "",
+    last_name_c: "",
+    email_c: "",
+    phone_c: "",
+    company_c: "",
+    position_c: "",
+    status_c: "Lead",
+    notes_c: "",
   });
 
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (contact) {
+if (contact) {
       setFormData({
-        firstName: contact.firstName || "",
-        lastName: contact.lastName || "",
-        email: contact.email || "",
-        phone: contact.phone || "",
-        company: contact.company || "",
-        position: contact.position || "",
-        status: contact.status || "Lead",
-        notes: contact.notes || "",
+        first_name_c: contact.first_name_c || "",
+        last_name_c: contact.last_name_c || "",
+        email_c: contact.email_c || "",
+        phone_c: contact.phone_c || "",
+        company_c: contact.company_c || "",
+        position_c: contact.position_c || "",
+        status_c: contact.status_c || "Lead",
+        notes_c: contact.notes_c || "",
       });
     }
   }, [contact]);
@@ -36,19 +36,19 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
+if (!formData.first_name_c.trim()) {
+      newErrors.first_name_c = "First name is required";
     }
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
+    if (!formData.last_name_c.trim()) {
+      newErrors.last_name_c = "Last name is required";
     }
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    if (!formData.email_c.trim()) {
+      newErrors.email_c = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email_c)) {
+      newErrors.email_c = "Please enter a valid email";
     }
-    if (!formData.company.trim()) {
-      newErrors.company = "Company is required";
+    if (!formData.company_c.trim()) {
+      newErrors.company_c = "Company is required";
     }
 
     setErrors(newErrors);
@@ -78,9 +78,10 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
           error={errors.firstName}
         >
           <Input
-            value={formData.firstName}
-            onChange={(e) => handleChange("firstName", e.target.value)}
+value={formData.first_name_c}
+            onChange={(e) => handleChange("first_name_c", e.target.value)}
             placeholder="Enter first name"
+            error={errors.first_name_c}
           />
         </FormField>
 
@@ -90,9 +91,10 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
           error={errors.lastName}
         >
           <Input
-            value={formData.lastName}
-            onChange={(e) => handleChange("lastName", e.target.value)}
+value={formData.last_name_c}
+            onChange={(e) => handleChange("last_name_c", e.target.value)}
             placeholder="Enter last name"
+            error={errors.last_name_c}
           />
         </FormField>
       </div>
@@ -103,18 +105,19 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
         error={errors.email}
       >
         <Input
-          type="email"
-          value={formData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
+type="email"
+          value={formData.email_c}
+          onChange={(e) => handleChange("email_c", e.target.value)}
           placeholder="Enter email address"
+          error={errors.email_c}
         />
       </FormField>
 
       <FormField label="Phone" error={errors.phone}>
         <Input
           type="tel"
-          value={formData.phone}
-          onChange={(e) => handleChange("phone", e.target.value)}
+value={formData.phone_c}
+          onChange={(e) => handleChange("phone_c", e.target.value)}
           placeholder="Enter phone number"
         />
       </FormField>
@@ -126,16 +129,18 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
           error={errors.company}
         >
           <Input
-            value={formData.company}
-            onChange={(e) => handleChange("company", e.target.value)}
+value={formData.company_c}
+            onChange={(e) => handleChange("company_c", e.target.value)}
             placeholder="Enter company name"
+            error={errors.company_c}
           />
         </FormField>
 
         <FormField label="Position" error={errors.position}>
           <Input
             value={formData.position}
-            onChange={(e) => handleChange("position", e.target.value)}
+value={formData.position_c}
+            onChange={(e) => handleChange("position_c", e.target.value)}
             placeholder="Enter job position"
           />
         </FormField>
@@ -143,8 +148,8 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
 
       <FormField label="Status" error={errors.status}>
         <Select
-          value={formData.status}
-          onChange={(e) => handleChange("status", e.target.value)}
+value={formData.status_c}
+          onChange={(e) => handleChange("status_c", e.target.value)}
         >
           <option value="Lead">Lead</option>
           <option value="Prospect">Prospect</option>
@@ -157,8 +162,8 @@ const ContactForm = ({ contact, onSubmit, onCancel, isSubmitting = false }) => {
         <textarea
           className="flex w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
           rows={4}
-          value={formData.notes}
-          onChange={(e) => handleChange("notes", e.target.value)}
+value={formData.notes_c}
+          onChange={(e) => handleChange("notes_c", e.target.value)}
           placeholder="Enter any notes about this contact"
         />
       </FormField>

@@ -47,14 +47,14 @@ const Contacts = () => {
       return;
     }
 
-    const filtered = contacts.filter(contact => {
-      const fullName = `${contact.firstName} ${contact.lastName}`.toLowerCase();
+const filtered = contacts.filter(contact => {
+      const fullName = `${contact.first_name_c} ${contact.last_name_c}`.toLowerCase();
       const searchLower = term.toLowerCase();
       return (
         fullName.includes(searchLower) ||
-        contact.email.toLowerCase().includes(searchLower) ||
-        contact.company.toLowerCase().includes(searchLower) ||
-        contact.status.toLowerCase().includes(searchLower)
+        contact.email_c.toLowerCase().includes(searchLower) ||
+        contact.company_c.toLowerCase().includes(searchLower) ||
+        contact.status_c.toLowerCase().includes(searchLower)
       );
     });
     setFilteredContacts(filtered);

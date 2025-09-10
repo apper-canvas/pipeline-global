@@ -33,14 +33,14 @@ const ContactTable = ({
     let aValue, bValue;
     
     if (sortColumn === "name") {
-      aValue = `${a.firstName} ${a.lastName}`.toLowerCase();
-      bValue = `${b.firstName} ${b.lastName}`.toLowerCase();
+aValue = `${a.first_name_c} ${a.last_name_c}`.toLowerCase();
+      bValue = `${b.first_name_c} ${b.last_name_c}`.toLowerCase();
     } else {
       aValue = a[sortColumn];
       bValue = b[sortColumn];
     }
 
-    if (sortColumn === "createdAt") {
+if (sortColumn === "created_at_c") {
       aValue = new Date(aValue);
       bValue = new Date(bValue);
     }
@@ -85,33 +85,33 @@ const ContactTable = ({
                     <div className="flex-shrink-0 h-10 w-10">
                       <div className="h-10 w-10 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center">
                         <span className="text-sm font-medium text-white">
-                          {contact.firstName[0]}{contact.lastName[0]}
+{contact.first_name_c[0]}{contact.last_name_c[0]}
                         </span>
                       </div>
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-slate-900">
-                        {contact.firstName} {contact.lastName}
+{contact.first_name_c} {contact.last_name_c}
                       </div>
                       <div className="text-sm text-slate-500">
-                        {contact.position}
+{contact.position_c}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{contact.email}</div>
+<div className="text-sm text-slate-900">{contact.email_c}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{contact.company}</div>
+<div className="text-sm text-slate-900">{contact.company_c}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <Badge variant={getStatusVariant(contact.status)}>
-                    {contact.status}
+<Badge variant={getStatusVariant(contact.status_c)}>
+                    {contact.status_c}
                   </Badge>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                  {formatDate(contact.createdAt)}
+{formatDate(contact.created_at_c)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex items-center space-x-2">
