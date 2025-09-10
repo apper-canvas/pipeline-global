@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "@/store/userSlice";
-import { AuthContext } from "@/contexts/AuthContext";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
+import { AuthContext } from "@/contexts/AuthContext";
 const Header = ({ title, onMenuToggle, actions = [] }) => {
   const { logout } = useContext(AuthContext);
   
