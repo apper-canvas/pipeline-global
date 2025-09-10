@@ -130,52 +130,62 @@ const CompanyForm = ({ company, onSave, onCancel }) => {
         </Card.Header>
         <Card.Content className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Company Name *
+              </label>
               <Input
-                label="Company Name *"
                 value={formData.name}
                 onChange={(e) => handleChange('name', e.target.value)}
                 error={errors.name}
                 placeholder="Enter company name"
               />
             </div>
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Industry *
+              </label>
               <Select
-                label="Industry *"
                 value={formData.industry}
                 onChange={(e) => handleChange('industry', e.target.value)}
                 error={errors.industry}
-                options={[
-                  { value: '', label: 'Select industry' },
-                  ...industries.map(industry => ({
-                    value: industry,
-                    label: industry
-                  }))
-                ]}
-              />
+              >
+                <option value="">Select industry</option>
+                {industries.map(industry => (
+                  <option key={industry} value={industry}>
+                    {industry}
+                  </option>
+                ))}
+              </Select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Website
+              </label>
               <Input
-                label="Website"
                 value={formData.website}
                 onChange={(e) => handleChange('website', e.target.value)}
                 error={errors.website}
                 placeholder="https://company.com"
               />
             </div>
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Status
+              </label>
               <Select
-                label="Status"
                 value={formData.status}
                 onChange={(e) => handleChange('status', e.target.value)}
-                options={statuses.map(status => ({
-                  value: status,
-                  label: status
-                }))}
-              />
+              >
+                {statuses.map(status => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </Select>
             </div>
           </div>
         </Card.Content>
@@ -191,17 +201,21 @@ const CompanyForm = ({ company, onSave, onCancel }) => {
         </Card.Header>
         <Card.Content className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Phone
+              </label>
               <Input
-                label="Phone"
                 value={formData.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
                 placeholder="(555) 123-4567"
               />
             </div>
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Email
+              </label>
               <Input
-                label="Email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange('email', e.target.value)}
@@ -211,9 +225,11 @@ const CompanyForm = ({ company, onSave, onCancel }) => {
             </div>
           </div>
 
-          <div>
+<div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Address
+            </label>
             <Input
-              label="Address"
               value={formData.address}
               onChange={(e) => handleChange('address', e.target.value)}
               placeholder="123 Business St, City, State 12345"
@@ -233,26 +249,34 @@ const CompanyForm = ({ company, onSave, onCancel }) => {
         <Card.Content className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
+<label className="block text-sm font-medium text-slate-700 mb-2">
+                Employee Count
+              </label>
               <Select
-                label="Employee Count"
                 value={formData.employeeCount}
                 onChange={(e) => handleChange('employeeCount', e.target.value)}
-                options={employeeCounts.map(count => ({
-                  value: count,
-                  label: count
-                }))}
-              />
+              >
+                {employeeCounts.map(count => (
+                  <option key={count} value={count}>
+                    {count}
+                  </option>
+                ))}
+              </Select>
             </div>
-            <div>
+<div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Annual Revenue
+              </label>
               <Select
-                label="Annual Revenue"
                 value={formData.revenue}
                 onChange={(e) => handleChange('revenue', e.target.value)}
-                options={revenueRanges.map(revenue => ({
-                  value: revenue,
-                  label: revenue || 'Not specified'
-                }))}
-              />
+              >
+                {revenueRanges.map(revenue => (
+                  <option key={revenue} value={revenue}>
+                    {revenue || 'Not specified'}
+                  </option>
+                ))}
+              </Select>
             </div>
           </div>
 
