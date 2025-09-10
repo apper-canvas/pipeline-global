@@ -1,55 +1,88 @@
+import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import Header from "@/components/organisms/Header";
-import Card from "@/components/atoms/Card";
-import ApperIcon from "@/components/ApperIcon";
+import KanbanBoard from "@/components/organisms/KanbanBoard";
+import DealModal from "@/components/organisms/DealModal";
+import Modal from "@/components/molecules/Modal";
+import DealForm from "@/components/organisms/DealForm";
+import { dealService } from "@/services/api/dealService";
 
 const Deals = () => {
   const { toggleSidebar } = useOutletContext();
+  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleDealClick = (deal) => {
+    setSelectedDeal(deal);
+    setIsModalOpen(true);
+  };
+
+  const handleDealUpdate = (updatedDeal) => {
+    setSelectedDeal(updatedDeal);
+    setRefreshKey(prev => prev + 1);
+  };
+
+  const handleDealDelete = () => {
+    setSelectedDeal(null);
+    setIsModalOpen(false);
+    setRefreshKey(prev => prev + 1);
+  };
+
+  const handleCreateDeal = () => {
+    setIsCreateModalOpen(true);
+  };
+
+  const handleCreateSave = () => {
+    setIsCreateModalOpen(false);
+    setRefreshKey(prev => prev + 1);
+  };
+
+  const headerActions = [
+    {
+      label: "Add Deal",
+      icon: "Plus",
+      onClick: handleCreateDeal,
+      variant: "primary"
+    }
+  ];
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 lg:p-8 h-screen flex flex-col">
       <Header 
         title="Deals" 
         onMenuToggle={toggleSidebar}
+        actions={headerActions}
       />
       
-      <div className="mt-8">
-        <Card className="max-w-2xl mx-auto">
-          <Card.Content className="text-center py-16">
-            <div className="bg-gradient-to-r from-emerald-100 to-emerald-200 rounded-full p-6 w-24 h-24 mx-auto mb-6">
-              <ApperIcon name="Briefcase" className="h-12 w-12 text-emerald-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Deal Pipeline Coming Soon
-            </h3>
-            <p className="text-slate-600 mb-8 max-w-md mx-auto">
-              Track your sales pipeline with kanban boards, deal stages, and revenue forecasting. 
-              This feature is currently in development and will be available soon.
-            </p>
-            <div className="bg-slate-50 rounded-lg p-6 text-left">
-              <h4 className="font-semibold text-slate-900 mb-3">Planned Features:</h4>
-              <ul className="space-y-2 text-slate-600">
-                <li className="flex items-center">
-                  <ApperIcon name="Check" className="h-4 w-4 text-emerald-500 mr-2" />
-                  Kanban-style deal pipeline
-                </li>
-                <li className="flex items-center">
-                  <ApperIcon name="Check" className="h-4 w-4 text-emerald-500 mr-2" />
-                  Customizable deal stages
-                </li>
-                <li className="flex items-center">
-                  <ApperIcon name="Check" className="h-4 w-4 text-emerald-500 mr-2" />
-                  Revenue forecasting
-                </li>
-                <li className="flex items-center">
-                  <ApperIcon name="Check" className="h-4 w-4 text-emerald-500 mr-2" />
-                  Deal activity timeline
-                </li>
-              </ul>
-            </div>
-          </Card.Content>
-        </Card>
+      <div className="mt-8 flex-1 overflow-hidden">
+        <KanbanBoard 
+          key={refreshKey}
+          onDealClick={handleDealClick}
+        />
       </div>
+
+      <DealModal
+        deal={selectedDeal}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onUpdate={handleDealUpdate}
+        onDelete={handleDealDelete}
+      />
+
+      <Modal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        title="Create New Deal"
+        size="lg"
+      >
+        <DealForm
+          onSave={handleCreateSave}
+          onCancel={() => setIsCreateModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };
