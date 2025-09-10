@@ -14,9 +14,6 @@ const apperClient = new ApperClient({
 
 const TABLE_NAME = 'company_c';
 
-// Simulate network delay
-const delay = (ms = 500) => new Promise(resolve => setTimeout(resolve, ms));
-
 export const companyService = {
   // Get all companies
   async getAll() {
