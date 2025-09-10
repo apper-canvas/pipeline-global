@@ -1,7 +1,13 @@
 import { contactService } from './contactService';
 import { dealService } from './dealService';
 import { companyService } from './companyService';
-import activitiesData from '../mockData/activities.json';
+
+// ApperClient integration for activity data
+const { ApperClient } = window.ApperSDK || {};
+const apperClient = new ApperClient({
+  apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+  apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+});
 
 class ReportsService {
   async getMetrics() {
